@@ -1,4 +1,4 @@
 .class
-.csv
+*.csv
 .idea
 target

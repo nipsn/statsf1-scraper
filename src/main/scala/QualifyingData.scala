@@ -15,7 +15,11 @@ object QualifyingData {
       val csvString = (header :: data.grouped(header.size).toList)
         .map (_.mkString(","))
         .filter(line => !line.contains("Not qualified"))
+        // TODO: filtrar en una linea
+        .filter(line => !line.contains("Not pre-qualified"))
         .mkString("\n")
+        .replaceAll("''", ".")
+        .replace('\'', ':')
 
         ParsedTableWriter(season, fileName, csvString)
       }

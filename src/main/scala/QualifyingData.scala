@@ -10,14 +10,14 @@ object QualifyingData {
       .map(url => (url, url.substring(9)))
 
     raceUrls.foreach(url => {
-      val diskName = "quali_" + url._2 + "_1984"
+      val fileName = "/quali_" + url._2
       val (header, data) = DatatableExtractor("https://www.statsf1.com" + url._1 + "/qualification.aspx")
       val csvString = (header :: data.grouped(header.size).toList)
         .map (_.mkString(","))
         .filter(line => !line.contains("Not qualified"))
         .mkString("\n")
 
-        ParsedTableWriter(diskName, csvString)
+        ParsedTableWriter(season, fileName, csvString)
       }
     )
   }

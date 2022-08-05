@@ -9,6 +9,5 @@ object DatatableExtractor {
     val header = (doc >> elementList(".datatable") >> extractor("thead td", texts)).head
     (header, data)
   }
-
 }
 
